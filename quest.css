@@ -1,40 +1,78 @@
+
+
+
+
 .userContainer{
-	display: block;
-	border-radius: 50%;
-	background-color: rgb(73, 197, 159);
-	width: 120px;
-	height: 120px;
-	float: left;
-	margin: 1%;
-	border: 2px solid #fff;
+    display: block;
+    border-radius: 50%;
+    background-color: rgb(73, 197, 159);
+    width: 120px;
+    height: 120px;
+    float: left;
+    margin: 1%;
+    border: 2px solid #fff;
 }
 
 .userContainer > img{
-	
+
 }	
 
 .addUser > a > img{
-	width:60%;
-	height:60%;
-	left: 20%;
-	top: 20%;
-	position: relative;
+    width:60%;
+    height:60%;
+    left: 20%;
+    top: 20%;
+    position: relative;
 }
 
 .user{
-	background-image: url("images/JKrowling.jpg");
-	background-size: cover;
+    background-image: url("images/JKrowling.jpg");
+    background-size: cover;
 }
 
 .user > a > img{
-	width: 20%;
-	height: 20%;
-	left: 70%;
-	top: 15%;
-	position: relative;
+    width: 20%;
+    height: 20%;
+    left: 70%;
+    top: 15%;
+    position: relative;
 }
 
 nav{
-	display: block;
-	background-color: #000c1c;
+    display: block;
+    background-color: #000c1c;
+}
+.searchUserBox{
+    padding-top: 4%;
+    display:none;
+}
+.searchedUsers{
+    border:1px solid #FAFAD2;
+    margin-bottom: 2%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px ;
+    background-color: antiquewhite;
+    box-sizing: border-box;
+    text-align: center;
+    display:none;
+}
+.profilePicture{
+    display: block;
+    width: 25%;
+    float: left;
+    margin: 1%;
+    border-radius: 10px;
+    border: 2px solid #000;
+}
+.userName{
+    width: 25%;
+    margin: 5%;
+    margin-top: 10%;
+    float: left;
+}
+.btnAddUser{
+    width: 25%;
+    margin: 5%;
+    margin-top: 10%;
+    float:right;
 }
