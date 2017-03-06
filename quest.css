@@ -24,7 +24,7 @@ header{
 	
 }	
 
-.addUser > a > img{
+.addUser > img{
 	width:60%;
 	height:60%;
 	left: 20%;
@@ -37,7 +37,7 @@ header{
 	background-size: cover;
 }
 
-.user > a > img{
+.user > img{
 	width: 20%;
 	height: 20%;
 	left: 70%;
@@ -85,4 +85,39 @@ footer{
 	padding-bottom: 1%;
 	color: white;
 	text-shadow: 2px 2px #000c1c;
+}
+
+.searchUserBox{
+    padding-top: 4%;
+    display:none;
+}
+.searchedUsers{
+    border:1px solid #FAFAD2;
+    margin-bottom: 2%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px ;
+    background-color: antiquewhite;
+    box-sizing: border-box;
+    text-align: center;
+    display:none;
+}
+.profilePicture{
+    display: block;
+    width: 25%;
+    float: left;
+    margin: 1%;
+    border-radius: 10px;
+    border: 2px solid #000;
+}
+.userName{
+    width: 25%;
+    margin: 5%;
+    margin-top: 10%;
+    float: left;
+}
+.btnAddUser{
+    width: 25%;
+    margin: 5%;
+    margin-top: 10%;
+    float:right;
 }
