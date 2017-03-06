@@ -1,3 +1,9 @@
+#headerTitle{
+	padding-top: 3%;
+	padding-bottom: 3%;
+	background-color: lightgrey;
+}
+
 .userContainer{
 	display: block;
 	border-radius: 50%;
