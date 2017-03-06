@@ -1,6 +1,19 @@
+<<<<<<< HEAD
 
 
 
+=======
+header {
+	background-color: rgb(73, 197, 159);
+}
+
+#headerTitle{
+	padding-top: 3%;
+	padding-bottom: 3%;
+	color: white;
+	 text-shadow: 2px 2px #000c1c;
+}
+>>>>>>> origin/master
 
 .userContainer{
     display: block;
