@@ -24,3 +24,4 @@ $("#btnAddUser").on("click", function(){
 	$(".active").attr("id", $(".userName").text());
 	$(".active").removeClass("active");
 });
+
