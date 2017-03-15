@@ -2,10 +2,6 @@ var bearer = "AAAAAAAAAAAAAAAAAAAAAFQFzgAAAAAAlo069eeiv9pE38ndp0JFqkCQaGc%3DRYRo
 var server = "twitter.php";
 
 
-$(".addUser").on("click", function(){
-	$(".searchUserBox").toggle();
-});
-
 $("#btnSearch").on("click", function(){
 	$(".searchedUsers").toggle();
 });
@@ -14,8 +10,28 @@ $(".user").on("click", function(){
 	getTimeLine(event.target.id);
 });
 
+$(".addUser").on("click", function(){
+	if($(this).hasClass("user")){
+		getTimeLine(event.target.id);
+	}else{
+		$(".searchUserBox").toggle();
+		$(".addUser").removeClass("active");
+		$(this).addClass("active");
+	}
+});
+
+
+$("#btnAddUser").on("click", function(){
+	$(".active").toggleClass("addUser user");
+	var profileImg = $(".profilePicture");
+	$(".active").css("background-image", "url(" + profileImg.attr('src') + ")");
+	$(".active").attr("id", $(".userName").text());
+	$(".active").removeClass("active");
+});
+
 
 function getTimeLine(screen_name){
+	$(".twitterResults").remove();
 	var URL = "statuses/user_timeline.json";	
 	var querys = new Array("screen_name=" + screen_name, "count=10");
 	$.ajax({
@@ -34,6 +50,7 @@ function getTimeLine(screen_name){
 			tweet.children(".tweetHeader").children(".media-heading").text(data[i].user.name);
 			tweet.children(".tweetBody").text(data[i].text);
 			tweet.appendTo("#main1");
+			tweet.addClass("twitterResults");
 		}
 		console.log(data);
 	}).fail(function(data){
