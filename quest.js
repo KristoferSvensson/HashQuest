@@ -2,18 +2,9 @@ var bearer = "AAAAAAAAAAAAAAAAAAAAAFQFzgAAAAAAlo069eeiv9pE38ndp0JFqkCQaGc%3DRYRo
 var server = "twitter.php";
 
 
-$(".addUser").on("click", function(){
-	$(".searchUserBox").toggle();
-});
-
-$("#btnSearch").on("click", function(){
-	$(".searchedUsers").toggle();
-});
-
 $(".user").on("click", function(){
 	getTimeLine(event.target.id);
 });
-
 
 function getTimeLine(screen_name){
 	var URL = "statuses/user_timeline.json";	

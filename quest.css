@@ -106,7 +106,6 @@ footer{
 }
 .profilePicture{
     display: block;
-    width: 25%;
     float: left;
     margin: 1%;
     border-radius: 10px;
