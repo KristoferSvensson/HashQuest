@@ -21,7 +21,6 @@ $(".addUser").on("click", function(){
 	}
 });
 
-
 $("#btnAddUser").on("click", function(){
 	$(".active").toggleClass("addUser user");
 	var profileImg = $(".profilePicture");
@@ -29,6 +28,7 @@ $("#btnAddUser").on("click", function(){
 	$(".active").attr("id", searchedScreenName);
 	$(".active").removeClass("active");
 });
+
 
 function getUser(screen_name){
 	var URL = "users/lookup.json";	
@@ -72,7 +72,18 @@ function getTimeLine(screen_name){
 			var tweet = $("#tweet").clone().show();
 			tweet.children(".tweetHeader").children(".tweetImg").attr("src", data[i].user.profile_image_url);
 			tweet.children(".tweetHeader").children(".media-heading").text(data[i].user.name);
-			tweet.children(".tweetBody").text(data[i].text);
+			tweet.children(".tweetHeader").children("#tweetText").text(data[i].text);
+			var hashtags = data[i].entities.hashtags;
+			for (var j = 0;j< hashtags.length;j++){
+				var thelink = $('<a>',{
+					text: "#" + hashtags[j].text + "  ",
+					href: '#',
+					id: hashtags[j].text,
+					click: function(){
+     					hashtagQuest(event.target.id);
+  					}
+				}).appendTo(tweet.children(".tweetBody"));
+			} 	
 			tweet.appendTo("#main1");
 			tweet.addClass("twitterResults");
 		}
@@ -81,4 +92,8 @@ function getTimeLine(screen_name){
 		console.log("Något gick fel");
 		console.log(JSON.stringify(data));
 	});
+}
+
+function hashtagQuest(hashtag){
+	alert(hashtag.toString());
 }
