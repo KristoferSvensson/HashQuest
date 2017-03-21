@@ -134,6 +134,33 @@ function getTimeLine(screen_name){
 			tweet.children(".tweetHeader").children(".media-heading").text(data[i].user.name);
 			tweet.children(".tweetHeader").children("#tweetText").text(data[i].text);
 			var hashtags = data[i].entities.hashtags;
+			var retweet = data[i].retweeted_status;
+			if(retweet){
+				var media = data[i].retweeted_status.entities.media;
+				if(media){
+					for (var j = 0;j< media.length;j++){
+						var img = $('<img />', { 
+							id: 'Myid',
+							src: data[i].retweeted_status.entities.media[0].media_url,
+							alt: 'MyAlt'
+						}).appendTo(tweet.children(".tweetBody"));
+						console.log(data[i].retweeted_status.entities.media[0].media_url);
+					} 
+				}
+
+			}else{
+				var media = data[i].entities.media;
+				if(media){
+					for (var j = 0;j< media.length;j++){
+						var img = $('<img />', { 
+							id: 'Myid',
+							src: data[i].entities.media[0].media_url,
+							alt: 'MyAlt'
+						}).appendTo(tweet.children(".tweetBody"));
+						console.log(data[i].entities.media[0].media_url);
+					} 
+				}	 	
+			}
 			if (hashtags.length>0){
 				for (var j = 0;j< hashtags.length;j++){
 					var thelink = $('<a>',{
@@ -188,6 +215,33 @@ function hashtagQuest(hashtag){
 			tweet.children(".tweetHeader").children(".tweetImg").attr("src", object[i].user.profile_image_url);
 			tweet.children(".tweetHeader").children(".media-heading").text(object[i].user.name);
 			tweet.children(".tweetHeader").children("#tweetText").text(object[i].text);
+			var retweet = object[i].retweeted_status;
+			if(retweet){
+				var media = object[i].retweeted_status.entities.media;
+				if(media){
+					for (var j = 0;j< media.length;j++){
+						var img = $('<img />', { 
+							id: 'Myid',
+							src: object[i].retweeted_status.entities.media[0].media_url,
+							alt: 'MyAlt'
+						}).appendTo(tweet.children(".tweetBody"));
+						console.log(object[i].retweeted_status.entities.media[0].media_url);
+					} 
+				}
+
+			}else{
+				var media = object[i].entities.media;
+				if(media){
+					for (var j = 0;j< media.length;j++){
+						var img = $('<img />', { 
+							id: 'Myid',
+							src: object[i].entities.media[0].media_url,
+							alt: 'MyAlt'
+						}).appendTo(tweet.children(".tweetBody"));
+						console.log(object[i].entities.media[0].media_url);
+					} 
+				}	 	
+			}
 			var hashtags = object[i].entities.hashtags;
 			if (hashtags.length>0){
 				for (var j = 0;j< hashtags.length;j++){
