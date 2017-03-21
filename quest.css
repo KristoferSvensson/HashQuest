@@ -16,13 +16,30 @@ header{
 	width: 120px;
 	height: 120px;
 	float: left;
-	margin: 1%;
 	border: 2px solid #fff;
 }
 
-.userContainer > img{
-	
-}	
+.backgroundDIV{
+	display: block;
+	border-radius: 50%;
+	background-color: white;
+	width: 120px;
+	height: 120px;
+	float: left;
+	margin: 1%;
+}
+
+
+.active{
+	opacity: 0.60;
+	filter: alpha(opacity=20);
+}
+
+.userContainer:hover{
+	opacity: 0.60;
+	filter: alpha(opacity=20);
+	transition: 0.5s;
+}
 
 .addUser > img{
 	width:60%;
@@ -33,6 +50,8 @@ header{
 }
 
 .user{
+	background-color: white;
+	background-image: url("");
 	background-size: cover;
 }
 

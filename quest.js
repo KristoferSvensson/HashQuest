@@ -14,10 +14,12 @@ $(".user").on("click", function(){
 		$("#btnDeleteUser").hide();
 		$("#deleteUserWarning").hide();
 		$(".searchUserBox").show();
-		$(".addUser").removeClass("active");
+		$(".active").removeClass("active");
 		$(this).addClass("active");
 	}else{
 		ballPressed = $(this);
+		$(".active").removeClass("active");
+		$(this).addClass("active");
 		$(".searchUserBox").hide();
 		$(".searchedUsers").hide();
 		$("#deleteUserWarning").hide();
@@ -29,6 +31,8 @@ $(".user").on("click", function(){
 $(".addUser").on("click", function(){
 	if($(this).hasClass("user")){
 		ballPressed = $(this);
+		$(".active").removeClass("active");
+		$(this).addClass("active");
 		$(".searchUserBox").hide();
 		$(".searchedUsers").hide();
 		$("#deleteUserWarning").hide();
@@ -39,7 +43,7 @@ $(".addUser").on("click", function(){
 		$("#btnDeleteUser").hide();
 		$("#deleteUserWarning").hide();
 		$(".searchUserBox").show();
-		$(".addUser").removeClass("active");
+		$(".active").removeClass("active");
 		$(this).addClass("active");
 	}
 });
