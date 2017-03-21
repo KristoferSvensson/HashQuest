@@ -25,10 +25,9 @@ $("#btnAddUser").on("click", function(){
 	$(".active").toggleClass("addUser user");
 	var profileImg = $(".profilePicture");
 	$(".active").css("background-image", "url(" + profileImg.attr('src') + ")");
-	$(".active").attr("id", searchedScreenName);
+	$(".active").attr("id", $(".userName").text());
 	$(".active").removeClass("active");
 });
-
 
 function getUser(screen_name){
 	var URL = "users/lookup.json";	
@@ -95,5 +94,42 @@ function getTimeLine(screen_name){
 }
 
 function hashtagQuest(hashtag){
-	alert(hashtag.toString());
+	$(".twitterResults").remove();
+	var URL = "search/tweets.json";	
+	var querys = new Array("q=" + hashtag, "count=10");
+	$.ajax({
+		url: server,
+		data: { 
+			'url': URL, 
+			'bearer': bearer,
+			'query': querys
+		},
+		dataType: 'JSON'
+	}).done(function(data){
+		var tweet = $(".tweet").clone();
+		var object = data.statuses;
+		for (var i = 0;i< object.length;i++){
+			var tweet = $("#tweet").clone().show();
+			tweet.children(".tweetHeader").children(".tweetImg").attr("src", object[i].user.profile_image_url);
+			tweet.children(".tweetHeader").children(".media-heading").text(object[i].user.name);
+			tweet.children(".tweetHeader").children("#tweetText").text(object[i].text);
+			var hashtags = object[i].entities.hashtags;
+			for (var j = 0;j< hashtags.length;j++){
+				var thelink = $('<a>',{
+					text: "#" + hashtags[j].text + "  ",
+					href: '#',
+					id: hashtags[j].text,
+					click: function(){
+     					hashtagQuest(event.target.id);
+  					}
+				}).appendTo(tweet.children(".tweetBody"));
+			} 	
+			tweet.appendTo("#main1");
+			tweet.addClass("twitterResults");
+		}
+		console.log(object);
+	}).fail(function(data){
+		console.log("Något gick fel");
+		console.log(JSON.stringify(data));
+	});
 }
