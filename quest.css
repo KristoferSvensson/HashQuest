@@ -99,16 +99,13 @@ main{
 	margin-right: 1%;
 	border: 2px solid white;
 	position: relative;
-
 }
 
 .tweetPhoto{
 	display: none;
 	margin-bottom: 1%;
 	border: 2px solid white;
-	width: 240px;
-
-}xxx
+}
 
 footer{
 	background-color: rgb(73, 197, 159);
@@ -121,39 +118,51 @@ footer{
 }
 
 .searchUserBox{
-    display:none;
+	display:none;
 	margin-top: 1%;
 	margin-bottom: 1%;
 }
 .searchedUsers{
-    border:1px solid #FAFAD2;
-    margin-bottom: 2%;
-    border-radius: 10px;
-    box-shadow: 0 0 10px ;
-    background-color: antiquewhite;
-    box-sizing: border-box;
-    text-align: center;
-    display:none;
+	border:1px solid #FAFAD2;
+	margin-bottom: 2%;
+	border-radius: 10px;
+	box-shadow: 0 0 10px ;
+	background-color: antiquewhite;
+	box-sizing: border-box;
+	text-align: center;
+	display:none;
 	margin-top: 1%;
 	margin-bottom: 1%;
 }
 .profilePicture{
-    display: block;
-    width: 25%;
-    float: left;
-    margin: 1%;
-    border-radius: 10px;
-    border: 2px solid #000;
+	display: block;
+	width: 25%;
+	float: left;
+	margin: 1%;
+	border-radius: 10px;
+	border: 2px solid #000;
 }
 .userName{
-    width: 25%;
-    margin: 5%;
-    margin-top: 10%;
-    float: left;
+	width: 25%;
+	margin: 5%;
+	margin-top: 10%;
+	float: left;
 }
 .btnAddUser{
-    width: 25%;
-    margin: 5%;
-    margin-top: 10%;
-    float:right;
+	width: 25%;
+	margin: 5%;
+	margin-top: 10%;
+	float:right;
+}
+
+@media screen and (max-width: 767px){
+	.tweetPhoto{
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 768px){
+	.tweetPhoto{
+		width: 30%;
+	}
 }
