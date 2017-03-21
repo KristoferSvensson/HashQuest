@@ -47,13 +47,13 @@ main{
 
 #btnDeleteUser{
 	display: none;
-	height: 50px;
+	height: 75px;
 	float: right;
 }
 
 #deleteUserWarning{
 	display: none;
-	height: 50px;
+	height: 75px;
 }
 
 .tweet{
@@ -92,8 +92,9 @@ footer{
 }
 
 .searchUserBox{
-    padding-top: 4%;
     display:none;
+	margin-top: 1%;
+	margin-bottom: 1%;
 }
 .searchedUsers{
     border:1px solid #FAFAD2;
@@ -104,6 +105,8 @@ footer{
     box-sizing: border-box;
     text-align: center;
     display:none;
+	margin-top: 1%;
+	margin-bottom: 1%;
 }
 .profilePicture{
     display: block;
