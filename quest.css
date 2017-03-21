@@ -47,14 +47,16 @@ main{
 
 #btnDeleteUser{
 	display: none;
-	height: 75px;
+	height: 65px;
 	float: right;
 }
 
 #deleteUserWarning{
 	display: none;
-	height: 75px;
+	height: 65px;
 }
+
+
 
 .tweet{
 	display: none;

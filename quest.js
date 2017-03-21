@@ -59,7 +59,7 @@ $("#btnAddUser").on("click", function(){
 
 $("#btnDeleteUser").on("click", function(){
 	
-	if(	$("#deleteUserWarning").is(":visible") ){
+	if(	$("#deleteUserWarning").is(":visible") ){	
 		ballPressed.toggleClass("user addUser");
 		ballPressed.css("background-image", "");
 		ballPressed.attr("id", "");
@@ -70,6 +70,7 @@ $("#btnDeleteUser").on("click", function(){
 		$(".twitterResults").remove();
 	}else{
 		$("#deleteUserWarning").show();
+		$("#pText").text("Press again to delete " + ballPressed.attr("id") + ".");
 	}
 });
 
