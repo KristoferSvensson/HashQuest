@@ -54,7 +54,7 @@ $("#btnAddUser").on("click", function(){
 	$(".active").removeClass("active");
 	$(".searchUserBox").hide();
 	$(".searchedUsers").hide();
-	
+	$("#search").val("");
 });
 
 $("#btnDeleteUser").on("click", function(){
