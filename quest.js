@@ -87,7 +87,17 @@ function getUser(screen_name){
 		},
 		dataType: 'JSON'
 	}).done(function(data){
-		$("#searchedUserImage").attr("src", data[0].profile_image_url);
+		var imgArray = data[0].profile_image_url.split('_');
+		var i;
+		var imgUrl = imgArray[0];
+		for(i = 1; i<imgArray.length ; i++){
+			if(imgArray[i].indexOf("normal") == -1){
+				imgUrl += "_" + imgArray[i]
+			}
+		}
+		var typeImg = data[0].profile_image_url.split('.');
+		imgUrl += "." + typeImg[typeImg.length-1];
+		$("#searchedUserImage").attr("src", imgUrl);
 		$("#searchedUserName").text(data[0].name);
 		searchedScreenName = data[0].screen_name;
 		$(".searchedUsers").show();
