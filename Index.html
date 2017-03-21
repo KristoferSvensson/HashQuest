@@ -13,8 +13,8 @@
 		</header>
 		<nav class="col-xs-12 col-sm-12 col-md-12">
 			<ul>
-				<li class="ball1 userContainer user" id="jk_rowling">
-					<img src="images/cancel.png" alt="Delete">
+				<li class="ball1 userContainer addUser">
+					<img src="images/add.png" alt="Add">
 				</li>
 				<li class="ball2 userContainer addUser">
 					<img src="images/add.png" alt="Add">
@@ -37,9 +37,6 @@
 				<li class="ball8 userContainer addUser">
 					<img src="images/add.png" alt="Add">
 				</li>
-				<li class="ball9 userContainer addUser">
-					<img src="images/add.png" alt="Add">
-				</li>
 		</ul>
 	</nav>
 	<main id="main2" class="col-xs-12 col-sm-12 col-md-12">
@@ -59,7 +56,11 @@
     </main>
 	
 	<main id="main1" class="col-xs-12 col-sm-12 col-md-12">
-		<article class="tweet" id="tweet">
+		<div id="deleteUserWarning" class="col-xs-10 col-sm-10 col-md-10 alert alert-danger" role="alert">
+			<p>Press again to delete user.</p>
+		</div>
+		<button type="button" id="btnDeleteUser" class="col-xs-2 col-sm-2 col-md-2 btn-danger">Delete user</button>
+		<article class="tweet col-xs-12 col-sm-12 col-md-12" id="tweet">
 			<div class="tweetHeader">
 				<img class="img-rounded tweetImg">	
 				<h4 class="media-heading"></h4>

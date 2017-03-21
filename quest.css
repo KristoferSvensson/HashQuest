@@ -33,16 +33,7 @@ header{
 }
 
 .user{
-	background-image: url("images/JKrowling.jpg");
 	background-size: cover;
-}
-
-.user > img{
-	width: 20%;
-	height: 20%;
-	left: 70%;
-	top: 15%;
-	position: relative;
 }
 
 nav{
@@ -54,12 +45,24 @@ main{
 	background-color: #CCCED1;
 }
 
+#btnDeleteUser{
+	display: none;
+	height: 50px;
+	float: right;
+}
+
+#deleteUserWarning{
+	display: none;
+	height: 50px;
+}
+
 .tweet{
 	display: none;
 	border-radius: 15px;
 	background-color: #e5e6e8;
-	margin: 1%;
 	overflow: hidden;
+	margin-bottom: 1%;
+	margin-top: 1%;
 }
 
 .tweetHeader{
