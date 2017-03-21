@@ -137,28 +137,22 @@ function getTimeLine(screen_name){
 			var retweet = data[i].retweeted_status;
 			if(retweet){
 				var media = data[i].retweeted_status.entities.media;
-				if(media){
-					for (var j = 0;j< media.length;j++){
-						var img = $('<img />', { 
-							id: 'Myid',
-							src: data[i].retweeted_status.entities.media[0].media_url,
-							alt: 'MyAlt'
-						}).appendTo(tweet.children(".tweetBody"));
-						console.log(data[i].retweeted_status.entities.media[0].media_url);
-					} 
+				if(media){	
+					var image = $("#idTweetPhoto").clone().show();	
+					image.attr("src", data[i].retweeted_status.entities.media[0].media_url);
+					image.appendTo(tweet.children(".tweetBody"));
+					image.addClass("imageResult");
+					$('<br>').appendTo(tweet.children(".tweetBody"));
 				}
 
 			}else{
 				var media = data[i].entities.media;
 				if(media){
-					for (var j = 0;j< media.length;j++){
-						var img = $('<img />', { 
-							id: 'Myid',
-							src: data[i].entities.media[0].media_url,
-							alt: 'MyAlt'
-						}).appendTo(tweet.children(".tweetBody"));
-						console.log(data[i].entities.media[0].media_url);
-					} 
+					var image = $("#idTweetPhoto").clone().show();	
+					image.attr("src", data[i].entities.media[0].media_url);
+					image.appendTo(tweet.children(".tweetBody"));
+					image.addClass("imageResult");				
+					$('<br>').appendTo(tweet.children(".tweetBody"));
 				}	 	
 			}
 			if (hashtags.length>0){
@@ -218,28 +212,22 @@ function hashtagQuest(hashtag){
 			var retweet = object[i].retweeted_status;
 			if(retweet){
 				var media = object[i].retweeted_status.entities.media;
-				if(media){
-					for (var j = 0;j< media.length;j++){
-						var img = $('<img />', { 
-							id: 'Myid',
-							src: object[i].retweeted_status.entities.media[0].media_url,
-							alt: 'MyAlt'
-						}).appendTo(tweet.children(".tweetBody"));
-						console.log(object[i].retweeted_status.entities.media[0].media_url);
-					} 
+				if(media){	
+					var image = $("#idTweetPhoto").clone().show();	
+					image.attr("src", object[i].retweeted_status.entities.media[0].media_url);
+					image.appendTo(tweet.children(".tweetBody"));
+					image.addClass("imageResult");
+					$('<br>').appendTo(tweet.children(".tweetBody"));
 				}
 
 			}else{
 				var media = object[i].entities.media;
 				if(media){
-					for (var j = 0;j< media.length;j++){
-						var img = $('<img />', { 
-							id: 'Myid',
-							src: object[i].entities.media[0].media_url,
-							alt: 'MyAlt'
-						}).appendTo(tweet.children(".tweetBody"));
-						console.log(object[i].entities.media[0].media_url);
-					} 
+					var image = $("#idTweetPhoto").clone().show();	
+					image.attr("src", object[i].entities.media[0].media_url);
+					image.appendTo(tweet.children(".tweetBody"));
+					image.addClass("imageResult");				
+					$('<br>').appendTo(tweet.children(".tweetBody"));
 				}	 	
 			}
 			var hashtags = object[i].entities.hashtags;
@@ -296,17 +284,17 @@ function saveUser(ball, user, img){
 	var userObj = '{"users":{"name":"' + user + '","image":"' + img +'"}}';
 	obj = JSON.parse(userObj);
 	var stringJson = JSON.stringify(obj);
-    localStorage.setItem(ball, stringJson);    
+	localStorage.setItem(ball, stringJson);    
 }
 
 function getUsers(ball){
 	var user = localStorage.getItem(ball);
 	
-    if(user != null){
+	if(user != null){
 		
 		var data = JSON.parse(user);
 		return data.users;
-    }else{
+	}else{
 		return;
-    }
+	}
 }
