@@ -5,14 +5,16 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link href="quest.css" rel="stylesheet">	
+	<link rel="apple-touch-icon" href="images/hashtag.png">
+	<link rel="icon" sizes="192x192" href="images/hashtag.png">
 	<title>#LifeIsAKwest</title>
 </head>
 <body>
 	<div id="wrapper" class="col-xs-12 col-sm-12 col-md-12">
-		<header class="col-xs-12 col-sm-12 col-md-12">
+		<header class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
 			<h1 class="text-center" id="headerTitle">#LifeIsAKwest</h1>
 		</header>
-		<nav class="col-xs-12 col-sm-12 col-md-12">
+		<nav class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
 			<ul>
 			<div class="backgroundDIV">
 				<li class="ball1 userContainer addUser">
@@ -56,23 +58,30 @@
 			</div>
 		</ul>
 	</nav>
-	<main id="main2" class="col-xs-12 col-sm-12 col-md-12">
-            <div class="col-xs-12 col-sm-4 col-md-4 col-sm-offset-4 searchUserBox">
+		<main id="progressMain" class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+			<img id="progressIcon" src="images/ajax-loader.gif" alt="Laddar">
+			<div id="progressTextWarning" class="col-xs-10 col-sm-10 col-md-10 col-xs-offset-1 alert alert-danger" role="alert">
+				<p id="progressText"></p>
+			</div>
+		</main>
+	<main id="main2" class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-sm-offset-4  searchUserBox">
                 <div class="input-group">
                     <input type="text" id="search" class="form-control" placeholder="Search for...">
                     <span class="input-group-btn">
                     <button id="btnSearch" class="btn btn-default" type="button">Search</button>
                     </span>
                 </div>
+				
             </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-3 searchedUsers">
+        <div class="col-xs-12 col-sm-12 col-md-12 searchedUsers">
            <img class="profilePicture" id="searchedUserImage" src="images/JKrowling.jpg" alt="Profilepicture">         
             <h3 class="userName" id="searchedUserName">Pewdiepie</h3>
             <button type="button" id="btnAddUser" class="btnAddUser btn btn-success">Add</button>
         </div>
     </main>
-	
-	<main id="main1" class="col-xs-12 col-sm-12 col-md-12">
+		
+	<main id="main1" class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
 		<div id="deleteUserWarning" class="col-xs-6 col-sm-8 col-md-10 alert alert-danger" role="alert">
 			<p id="pText">Press again to delete user.</p>
 		</div>
@@ -90,7 +99,7 @@
 	</main>
 	 
 
-	<footer class="col-xs-12 col-sm-12 col-md-12">
+	<footer class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
 		<h3 class="text-center" id="footerTitle"> ©K.A.O.S.</h3>
 	</footer>
 

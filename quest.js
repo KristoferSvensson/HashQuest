@@ -5,18 +5,41 @@ var ballPressed;
 window.onload = updateUsers();
 
 $("#btnSearch").on("click", function(){
-	getUser($('#search').val());
+	$(".twitterResults").remove();
+	$("#progressText").text("");
+	$("#progressTextWarning").hide();
+	if($('#search').val() != ""){
+		getUser($('#search').val());
+	} else {
+		$("#progressText").text("Please write a screen name in the search field");
+		$("#progressTextWarning").show();
+	}
+});
+
+$("#search").bind("enterKey",function(e){
+	$("#btnSearch").click();
+});
+$("#search").keyup(function(e){
+    if(e.keyCode == 13)
+    {
+       $(this).trigger("enterKey");
+    }
 });
 
 $(".user").on("click", function(){
 	if($(this).hasClass("addUser")){
+		$("#progressText").text("");
+		$("#progressTextWarning").hide();
 		$(".twitterResults").remove();
 		$("#btnDeleteUser").hide();
 		$("#deleteUserWarning").hide();
 		$(".searchUserBox").show();
+		$("#search").focus();
 		$(".active").removeClass("active");
 		$(this).addClass("active");
 	}else{
+		$("#progressText").text("");
+		$("#progressTextWarning").hide();
 		ballPressed = $(this);
 		$(".active").removeClass("active");
 		$(this).addClass("active");
@@ -30,6 +53,8 @@ $(".user").on("click", function(){
 
 $(".addUser").on("click", function(){
 	if($(this).hasClass("user")){
+		$("#progressText").text("");
+		$("#progressTextWarning").hide();
 		ballPressed = $(this);
 		$(".active").removeClass("active");
 		$(this).addClass("active");
@@ -39,16 +64,20 @@ $(".addUser").on("click", function(){
 		$("#btnDeleteUser").show();
 		getTimeLine(event.target.id);
 	}else{
+		$("#progressText").text("");
+		$("#progressTextWarning").hide();
 		$(".twitterResults").remove();
 		$("#btnDeleteUser").hide();
 		$("#deleteUserWarning").hide();
 		$(".searchUserBox").show();
+		$("#search").focus();
 		$(".active").removeClass("active");
 		$(this).addClass("active");
 	}
 });
 
 $("#btnAddUser").on("click", function(){
+	$(".twitterResults").remove();
 	$(".active").toggleClass("addUser user");
 	var profileImg = $(".profilePicture");
 	$(".active").css("background-image", "url(" + profileImg.attr('src') + ")");
@@ -80,6 +109,7 @@ $("#btnDeleteUser").on("click", function(){
 
 
 function getUser(screen_name){
+	$("#progressIcon").show();
 	var URL = "users/lookup.json";	
 	var querys = new Array("screen_name=" + screen_name);
 	$.ajax({
@@ -106,15 +136,19 @@ function getUser(screen_name){
 		searchedScreenName = data[0].screen_name;
 		$(".searchedUsers").show();
 		console.log(data);
+		$("#progressIcon").hide();
 	}).fail(function(data){
-		console.log("Något gick fel");
 		console.log(JSON.stringify(data));
+		$("#progressText").text("Something went wrong");
+		$("#progressTextWarning").show();
+		$("#progressIcon").hide();
 	});
 }
 
 
 
 function getTimeLine(screen_name){
+	$("#progressIcon").show();
 	$(".twitterResults").remove();
 	var URL = "statuses/user_timeline.json";	
 	var querys = new Array("screen_name=" + screen_name, "count=10");
@@ -128,68 +162,55 @@ function getTimeLine(screen_name){
 		dataType: 'JSON'
 	}).done(function(data){
 		var tweet = $(".tweet").clone();
+		if(data.length == 0){
+			$("#progressText").text("No tweets posted");
+			$("#progressTextWarning").show();
+		}
 		for (var i = 0;i< data.length;i++){
 			var tweet = $("#tweet").clone().show();
 			tweet.children(".tweetHeader").children(".tweetImg").attr("src", data[i].user.profile_image_url);
 			tweet.children(".tweetHeader").children(".media-heading").text(data[i].user.name);
-			tweet.children(".tweetHeader").children("#tweetText").text(data[i].text);
 			var hashtags = data[i].entities.hashtags;
 			var retweet = data[i].retweeted_status;
 			if(retweet){
+				tweet.children(".tweetHeader").children("#tweetText").text("RT: " + data[i].retweeted_status.text);
 				var media = data[i].retweeted_status.entities.media;
 				if(media){	
-					var image = $("#idTweetPhoto").clone().show();	
-					image.attr("src", data[i].retweeted_status.entities.media[0].media_url);
-					image.appendTo(tweet.children(".tweetBody"));
-					image.addClass("imageResult");
+					createTweetImage(data[i].retweeted_status.entities.media[0].media_url).appendTo(tweet.children(".tweetBody"));
 					$('<br>').appendTo(tweet.children(".tweetBody"));
 				}
-
 			}else{
+				tweet.children(".tweetHeader").children("#tweetText").text(data[i].text);
 				var media = data[i].entities.media;
 				if(media){
-					var image = $("#idTweetPhoto").clone().show();	
-					image.attr("src", data[i].entities.media[0].media_url);
-					image.appendTo(tweet.children(".tweetBody"));
-					image.addClass("imageResult");				
+					createTweetImage(data[i].entities.media[0].media_url).appendTo(tweet.children(".tweetBody"));;			
 					$('<br>').appendTo(tweet.children(".tweetBody"));
 				}	 	
 			}
 			if (hashtags.length>0){
 				for (var j = 0;j< hashtags.length;j++){
-					var thelink = $('<a>',{
-						text: "#" + hashtags[j].text + "  ",
-						href: '#',
-						id: hashtags[j].text,
-						click: function(){
-							hashtagQuest(event.target.id);
-						}
-					}).appendTo(tweet.children(".tweetBody"));
+					createLink(hashtags[j].text, "#").appendTo(tweet.children(".tweetBody"));
 				}
 				$('<br>').appendTo(tweet.children(".tweetBody"));
 			}
 			var userMentions = data[i].entities.user_mentions;
 			for (var j = 0;j< userMentions.length;j++){
-				var thelink = $('<a>',{
-					text: "@" + userMentions[j].screen_name + "  ",
-					href: '#',
-					id: userMentions[j].screen_name,
-					click: function(){
-						getTimeLine(event.target.id);
-					}
-				}).appendTo(tweet.children(".tweetBody"));
+				createLink(userMentions[j].screen_name, "@").appendTo(tweet.children(".tweetBody"));
 			} 	 	
 			tweet.appendTo("#main1");
 			tweet.addClass("twitterResults");
 		}
-		console.log(data);
+		$("#progressIcon").hide();
 	}).fail(function(data){
-		console.log("Något gick fel");
 		console.log(JSON.stringify(data));
+		$("#progressText").text("Something went wrong");
+		$("#progressTextWarning").show();
+		$("#progressIcon").hide();
 	});
 }
 
 function hashtagQuest(hashtag){
+	$("#progressIcon").show();
 	$(".twitterResults").remove();
 	var URL = "search/tweets.json";	
 	var querys = new Array("q=" + hashtag, "count=10");
@@ -208,62 +229,66 @@ function hashtagQuest(hashtag){
 			var tweet = $("#tweet").clone().show();
 			tweet.children(".tweetHeader").children(".tweetImg").attr("src", object[i].user.profile_image_url);
 			tweet.children(".tweetHeader").children(".media-heading").text(object[i].user.name);
-			tweet.children(".tweetHeader").children("#tweetText").text(object[i].text);
 			var retweet = object[i].retweeted_status;
 			if(retweet){
+				tweet.children(".tweetHeader").children("#tweetText").text("RT: " + object[i].retweeted_status.text);
 				var media = object[i].retweeted_status.entities.media;
 				if(media){	
-					var image = $("#idTweetPhoto").clone().show();	
-					image.attr("src", object[i].retweeted_status.entities.media[0].media_url);
-					image.appendTo(tweet.children(".tweetBody"));
-					image.addClass("imageResult");
+					createTweetImage(object[i].retweeted_status.entities.media[0].media_url).appendTo(tweet.children(".tweetBody"));
 					$('<br>').appendTo(tweet.children(".tweetBody"));
 				}
-
 			}else{
+				tweet.children(".tweetHeader").children("#tweetText").text(object[i].text);
 				var media = object[i].entities.media;
 				if(media){
-					var image = $("#idTweetPhoto").clone().show();	
-					image.attr("src", object[i].entities.media[0].media_url);
-					image.appendTo(tweet.children(".tweetBody"));
-					image.addClass("imageResult");				
+					createTweetImage(data[i].entities.media[0].media_url).appendTo(tweet.children(".tweetBody"));;				
 					$('<br>').appendTo(tweet.children(".tweetBody"));
 				}	 	
 			}
 			var hashtags = object[i].entities.hashtags;
 			if (hashtags.length>0){
 				for (var j = 0;j< hashtags.length;j++){
-					var thelink = $('<a>',{
-						text: "#" + hashtags[j].text + "  ",
-						href: '#',
-						id: hashtags[j].text,
-						click: function(){
-							hashtagQuest(event.target.id);
-						}
-					}).appendTo(tweet.children(".tweetBody"));
+					createLink(hashtags[j].text, "#").appendTo(tweet.children(".tweetBody"));
 				}
 				$('<br>').appendTo(tweet.children(".tweetBody"));
 			}
 			var userMentions = object[i].entities.user_mentions;		
 			for (var j = 0;j< userMentions.length;j++){
-				var thelink = $('<a>',{
-					text: "@" + userMentions[j].screen_name + "  ",
-					href: '#',
-					id: userMentions[j].screen_name,
-					click: function(){
-						getTimeLine(event.target.id);
-					}
-				}).appendTo(tweet.children(".tweetBody"));
+				createLink(userMentions[j].screen_name, "@").appendTo(tweet.children(".tweetBody"));
 			} 	
-
 			tweet.appendTo("#main1");
 			tweet.addClass("twitterResults");
 		}
-		console.log(object);
+		$("#progressIcon").hide();
 	}).fail(function(data){
-		console.log("Något gick fel");
 		console.log(JSON.stringify(data));
+		$("#progressText").text("Something went wrong");
+		$("#progressTextWarning").show();
+		$("#progressIcon").hide();
 	});
+}
+
+function createLink(linkText, sign){
+	var thelink = $('<a>',{
+		text: sign + linkText + "  ",
+		href: '#',
+		id: linkText,
+		click: function(){
+			if (sign =="#"){
+				hashtagQuest(event.target.id);
+			} else {
+				getTimeLine(event.target.id);
+			}
+		}
+	});
+	return thelink;
+}
+
+function createTweetImage(imageURL){
+	var image = $("#idTweetPhoto").clone().show();	
+	image.attr("src", imageURL);
+	image.addClass("imageResult");
+	return image;
 }
 
 

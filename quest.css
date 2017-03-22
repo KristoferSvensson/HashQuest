@@ -1,5 +1,15 @@
+body{
+	background-color: blue;
+	background-image: url("images/background2.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+	background-attachment: fixed;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
 header{
-	background-color: rgb(73, 197, 159);
+	background: rgba(90, 90, 90, 0.7);
+	
 }
 
 #headerTitle{
@@ -7,6 +17,16 @@ header{
 	padding-bottom: 3%;
 	color: white;
 	text-shadow: 2px 2px #000c1c;
+}
+#progressMain{
+	text-align: center;
+
+}
+#progressIcon{
+	display: none;
+}
+#progressTextWarning{
+	display: none;
 }
 
 .userContainer{
@@ -57,11 +77,11 @@ header{
 
 nav{
 	display: block;
-	background-color: #000c1c;
+	background: rgba(0, 0, 0, 0.7);
 }
 
 main{
-	background-color: #CCCED1;
+	 background: rgba(0, 0, 0, 0.7);
 }
 
 #btnDeleteUser{
@@ -108,7 +128,7 @@ main{
 }
 
 footer{
-	background-color: rgb(73, 197, 159);
+	background: rgba(90, 90, 90, 0.7);
 }
 
 #footerTitle{
@@ -123,11 +143,9 @@ footer{
 	margin-bottom: 1%;
 }
 .searchedUsers{
-	border:1px solid #FAFAD2;
 	margin-bottom: 2%;
-	border-radius: 10px;
-	box-shadow: 0 0 10px ;
-	background-color: antiquewhite;
+	border-radius: 15px;
+	background-color: #e5e6e8;
 	box-sizing: border-box;
 	text-align: center;
 	display:none;
@@ -136,7 +154,7 @@ footer{
 }
 .profilePicture{
 	display: block;
-	width: 25%;
+	width: 20%;
 	float: left;
 	margin: 1%;
 	border-radius: 10px;
