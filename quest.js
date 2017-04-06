@@ -1,4 +1,4 @@
-var bearer = "AAAAAAAAAAAAAAAAAAAAAFQFzgAAAAAAlo069eeiv9pE38ndp0JFqkCQaGc%3DRYRor8IQOf4LCjW4aEwmB4ET0KvoUnMyCFDE1vziWnuxOdlHe4";
+var bearer = "";
 var server = "twitter.php";
 var searchedScreenName;
 var ballPressed;
